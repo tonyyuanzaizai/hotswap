@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Premain-Class: com.tony.zaizai.agent.ZaiZaiHotSwapAgent
+Agent-Class: com.tony.zaizai.agent.ZaiZaiHotSwapAgent
+Can-Redefine-Classes: true
+Can-Retransform-Classes: true
