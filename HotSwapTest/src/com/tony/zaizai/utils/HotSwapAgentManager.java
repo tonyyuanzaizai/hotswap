@@ -16,17 +16,26 @@ import java.lang.management.ManagementFactory;
  */
 public class HotSwapAgentManager {
     private static final Logger logger = LoggerFactory.getLogger(HotSwapAgentManager.class);
-    private static final String AGENT_JAR = "E:\\tonyyuanzaizai\\agent\\zaizai-agent.jar";
+    private static String AGENT_JAR = "E:\\tonyyuanzaizai\\agent\\zaizai-agent.jar";
+    private static String JAVA_PID = null;
 
+    public static void updateMainServer(String agentJarPath, String pid) {
+        AGENT_JAR = agentJarPath;
+        JAVA_PID =  pid;
+        reloadAgent();
+    }
     public static void reloadAgent() {
-        String pid = getPID();
+        if(JAVA_PID == null){
+            JAVA_PID= getPID();
+        }
+
         VirtualMachine vm = null;
         try {
-            vm = VirtualMachine.attach(pid);
+            vm = VirtualMachine.attach(JAVA_PID);
         } catch (AttachNotSupportedException e) {
-            logger.error("attach " + pid, e);
+            logger.error("attach " + JAVA_PID, e);
         } catch (IOException e) {
-            logger.error("attach " + pid, e);
+            logger.error("attach " + JAVA_PID, e);
         }
         if (vm == null) {
             return;
@@ -35,11 +44,11 @@ public class HotSwapAgentManager {
             vm.loadAgent(AGENT_JAR);
             vm.detach();
         } catch (AgentLoadException e) {
-            logger.error("load agent " + pid, e);
+            logger.error("load agent " + JAVA_PID, e);
         } catch (AgentInitializationException e) {
-            logger.error("load agent " + pid, e);
+            logger.error("load agent " + JAVA_PID, e);
         } catch (IOException e) {
-            logger.error("load agent " + pid, e);
+            logger.error("load agent " + JAVA_PID, e);
         }
     }
 

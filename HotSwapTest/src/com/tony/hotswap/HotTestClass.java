@@ -20,19 +20,19 @@ public class HotTestClass{
 //        }
 
 
-        return "privateGetRawV-string==6";
-//        return hotprivateGetRawV();
+//        return "privateGetRawV-string==8";
+        return hotprivateGetRawV();
     }
 //
-//    private String hotprivateGetRawV(){
-//        return "hot privateGetRawV-string==3";
-//    }
+    private String hotprivateGetRawV(){
+        return "hot privateGetRawV-string==8-5";
+    }
 
     public static String getStaticRawValue(){
 
-        return "static-raw-string==6";
+        return "static-raw-string==8-5";
     }
 
-    public static String staticRawField = "staticRawField==6";
-    public String publicRawField = "publicRawField==6";
+    public static String staticRawField = "staticRawField==8-5";
+    public String publicRawField = "publicRawField==8-5";
 }
