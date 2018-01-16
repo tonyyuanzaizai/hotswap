@@ -35,3 +35,31 @@ java.lang.UnsupportedOperationException: class redefinition failed: attempted to
 3. 不能增加方法
 java.lang.UnsupportedOperationException: class redefinition failed: attempted to add a method
 
+-----------------------------------------------------------------
+@2018-1-16 hotswap+dcevm 更新class
+
+安装dcevm 
+java DCEVM-8u144-installer_new.jar install 0 false
+
+windows
+
+set CLASSPATH=.;E:\tonyyuanzaizai\git\hotswap\MainServer\lib\commons-lang-2.4.jar;E:\tonyyuanzaizai\git\hotswap\MainServer\lib\commons-io-1.4.jar;E:\tonyyuanzaizai\git\hotswap\MainServer\lib\slf4j-api-1.7.6.jar;E:\java\jdk1.8.0_92\lib\tools.jar;E:\tonyyuanzaizai\git\hotswap\MainServer\lib\logback-classic-1.1.2.jar;E:\tonyyuanzaizai\git\hotswap\MainServer\lib\logback-core-1.1.2.jar;
+
+java  -XX:+TraceClassLoading -XXaltjvm=dcevm -javaagent:E:\tonyyuanzaizai\agent\zaizai-agent.jar MainServer
+
+
+server 启动
+java  -XXaltjvm=dcevm -javaagent:E:\tonyyuanzaizai\agent\zaizai-agent.jar MainServer
+
+
+更新class
+java UpdateMainServer E:\tonyyuanzaizai\agent\zaizai-agent.jar pid
+
+测试服linux
+export CLASSPATH=.:/root/java/test/lib/commons-lang-2.4.jar:/root/java/test/lib/commons-io-1.4.jar:/root/java/test/lib/slf4j-api-1.7.6.jar:/usr/java/jdk1.8.0_152/lib/tools.jar:/root/java/test/lib/logback-classic-1.1.2.jar:/root/java/test/lib/logback-core-1.1.2.jar
+
+服务器
+java  -XXaltjvm=dcevm -javaagent:/root/java/test/zaizai-agent.jar MainServer
+
+更新
+java UpdateMainServer /root/java/test/zaizai-agent.jar 23717

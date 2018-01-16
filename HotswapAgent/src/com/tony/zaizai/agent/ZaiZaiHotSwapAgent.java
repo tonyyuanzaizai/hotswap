@@ -21,14 +21,18 @@ public class ZaiZaiHotSwapAgent {
         String os = System.getProperty("os.name").toLowerCase();
         logger.info("[hot swap] current os:" + os);
 
-        if(os.contains("windows"))
+        if(os.contains("windows")) {
             PATCH_DIR = "c:/agent/patches";
-        if(os.contains("mac") || os.contains("darwin"))
+        }
+        else if(os.contains("mac") || os.contains("darwin")) {
             PATCH_DIR = "/data/agent/patches";
-        if(os.contains("unix") || os.contains("linux"))
+        }
+        else if(os.contains("unix") || os.contains("linux")) {
             PATCH_DIR = "/data/agent/patches";
-        else
+        }
+        else {
             throw new Exception("Unknown OS is unsupported.");
+        }
     }
 
     public static void premain(String args, Instrumentation inst) {

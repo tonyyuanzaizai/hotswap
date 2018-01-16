@@ -26,22 +26,22 @@ public class HotTestClass{
 //
     private String hotprivateGetRawV(){
         hotprivateGetRawV2();
-        staticRawField = "staticRawField==8-6";
-        return "hot privateGetRawV-string==8-6";
+        staticRawField = "staticRawField==8-7";
+        return "hot privateGetRawV-string==8-7";
     }
 
 
     private String hotprivateGetRawV2(){
-        staticRawField = "staticRawField==8-6";
-        System.out.println("hotprivateGetRawV2");
-        return "hot privateGetRawV-string==8-6";
+        staticRawField = "staticRawField==8-7";
+        System.out.println("hotprivateGetRawV3");
+        return "hot privateGetRawV-string==8-7";
     }
 
     public static String getStaticRawValue(){
 
-        return "static-raw-string==8-6";
+        return "static-raw-string==8-7";
     }
 
-    public static String staticRawField = "staticRawField==8-6";
-    public String publicRawField = "publicRawField==8-6";
+    public static String staticRawField = "staticRawField==8-7";
+    public String publicRawField = "publicRawField==8-7";
 }
