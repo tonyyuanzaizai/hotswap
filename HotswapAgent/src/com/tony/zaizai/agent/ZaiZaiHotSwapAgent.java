@@ -10,13 +10,26 @@ import java.lang.instrument.Instrumentation;
 import java.util.*;
 
 /**
- * Created by tonyyuan on 2018/01/13.
+ * Created by yuanyuan on 2018/01/13.
  */
 public class ZaiZaiHotSwapAgent {
     private static final Logger logger = LoggerFactory.getLogger(ZaiZaiHotSwapAgent.class);
-    private static final String PATCH_DIR = "E:/tonyyuanzaizai/agent/patches";//patches
+    private static String PATCH_DIR = "E:/tonyyuanzaizai/agent/patches";//patches
     private static final String LOAD_PACKAGES = "com.tony.hotswap";
 
+    private static void fixPatchDir() throws Exception{
+        String os = System.getProperty("os.name").toLowerCase();
+        logger.info("[hot swap] current os:" + os);
+
+        if(os.contains("windows"))
+            PATCH_DIR = "c:/agent/patches";
+        if(os.contains("mac") || os.contains("darwin"))
+            PATCH_DIR = "/data/agent/patches";
+        if(os.contains("unix") || os.contains("linux"))
+            PATCH_DIR = "/data/agent/patches";
+        else
+            throw new Exception("Unknown OS is unsupported.");
+    }
 
     public static void premain(String args, Instrumentation inst) {
         
@@ -35,6 +48,7 @@ public class ZaiZaiHotSwapAgent {
      * @throws Exception
      */
     public static void agentmain(String args, Instrumentation inst) throws Exception {
+        fixPatchDir();
         logger.info("[hot swap] begin, agentmain method invoked with args: {} and inst: {}, RedefineClasses: {} and RetransformClasses: {}", args, inst, inst.isRedefineClassesSupported(), inst.isRetransformClassesSupported());
         Map<String, String> classNamePathMap = getFullClassNameFilePathMap();
         if (classNamePathMap.isEmpty()) {
@@ -107,9 +121,9 @@ public class ZaiZaiHotSwapAgent {
 
             String fullClassName = getFullClassName(filePath);
             logger.info("[hot swap] find fullClassName: " + fullClassName);
-            if (fullClassName.startsWith(LOAD_PACKAGES)) {
-                map.put(fullClassName, patchFile.getPath());
-            }
+            //if (fullClassName.startsWith(LOAD_PACKAGES)) {
+            map.put(fullClassName, patchFile.getPath());//com.tony.hotswap.HotTestClass->class_file_fullpath
+            //}
         }
         return map;
     }
