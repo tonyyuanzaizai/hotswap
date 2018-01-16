@@ -39,9 +39,9 @@ public class MainApp
                 }
 
             }
-            System.out.println("Usage: java MainApp install altjvm true");
-            System.out.println("Usage: java MainApp install altjvm false");
-            System.out.println("Usage: java MainApp uninstall altjvm true");
+            System.out.println("Usage: java -jar DCEVM-8u144-installer_new.jar install altjvm true");
+            System.out.println("Usage: java -jar DCEVM-8u144-installer_new.jar install altjvm false");
+            System.out.println("Usage: java -jar DCEVM-8u144-installer_new.jar uninstall altjvm true");
         }
         catch(Exception ex)
         {
