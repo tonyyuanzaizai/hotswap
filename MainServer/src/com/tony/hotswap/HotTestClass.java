@@ -1,5 +1,6 @@
 package com.tony.hotswap;
 
+import com.tony.hotswap.adddir.AddTestClass;
 import org.slf4j.Logger;
 
 import java.lang.reflect.Field;
@@ -26,22 +27,25 @@ public class HotTestClass{
 //
     private String hotprivateGetRawV(){
         hotprivateGetRawV2();
-        staticRawField = "staticRawField==8-7";
-        return "hot privateGetRawV-string==8-7";
+        return  hotprivateGetRawV2();
     }
 
 
     private String hotprivateGetRawV2(){
-        staticRawField = "staticRawField==8-7";
-        System.out.println("hotprivateGetRawV3");
-        return "hot privateGetRawV-string==8-7";
+        return hotprivateGetRawV3();
+    }
+
+    private String hotprivateGetRawV3(){
+        AddTestClass.getStaticRawValue();
+        (new AddTestClass()).getRawValue();
+
+        return "hot privateGetRawV3-string==8-9";
     }
 
     public static String getStaticRawValue(){
-
-        return "static-raw-string==8-7";
+        return "static-raw-string==8-9";
     }
 
-    public static String staticRawField = "staticRawField==8-7";
-    public String publicRawField = "publicRawField==8-7";
+    public static String staticRawField = "staticRawField==8-9";
+    public String publicRawField = "publicRawField==8-9";
 }

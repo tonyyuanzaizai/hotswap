@@ -47,10 +47,15 @@ public class MainServer {
 
     // 更新hot class
     private static void loadHotClass() {
-        System.out.println("new HotTestClass getValue--1: " + (new HotTestClass()).getRawValue());
-        System.out.println("new HotTestClass getStaticValue--1: " + HotTestClass.getStaticRawValue());
-        System.out.println("new HotTestClass staticRawField--1: " + HotTestClass.staticRawField);
-        System.out.println("new HotTestClass publicRawField--1: " + (new HotTestClass()).publicRawField);
+        try{
+            System.out.println("new HotTestClass getValue--1: " + (new HotTestClass()).getRawValue());
+            System.out.println("new HotTestClass getStaticValue--1: " + HotTestClass.getStaticRawValue());
+            System.out.println("new HotTestClass staticRawField--1: " + HotTestClass.staticRawField);
+            System.out.println("new HotTestClass publicRawField--1: " + (new HotTestClass()).publicRawField);
+        }
+        catch(Throwable ex){
+            System.out.println("Error."+ex);
+        }
     }
 
     private static String getPID() {

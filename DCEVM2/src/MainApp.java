@@ -39,16 +39,16 @@ public class MainApp
                 }
 
             }
-            System.out.println("Usage: java -jar DCEVM-8u144-installer_new.jar install altjvm true");
-            System.out.println("Usage: java -jar DCEVM-8u144-installer_new.jar install altjvm false");
-            System.out.println("Usage: java -jar DCEVM-8u144-installer_new.jar uninstall altjvm true");
+            System.out.println("Usage: java -jar DCEVM-8u144-installer_new.jar install 0 altjvm true");
+            System.out.println("Usage: java -jar DCEVM-8u144-installer_new.jar install 0 altjvm false");
+            System.out.println("Usage: java -jar DCEVM-8u144-installer_new.jar uninstall 0 altjvm true");
         }
         catch(Exception ex)
         {
             showInstallerException(ex);
         }
 
-        if(args.length != 3){
+        if(args.length != 4){
             System.out.println("Installation false");
             return;
         }
@@ -61,8 +61,8 @@ public class MainApp
                 return;
             }
 
-            boolean install = Boolean.getBoolean(args[2]);
             int idx = Integer.parseInt(args[1]);
+            boolean install = Boolean.getBoolean(args[3]);
             Installation installation = installations.get(idx);
 
             if("install".equals(args[0])){

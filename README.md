@@ -59,7 +59,15 @@ java UpdateMainServer E:\tonyyuanzaizai\agent\zaizai-agent.jar pid
 export CLASSPATH=.:/root/java/test/lib/commons-lang-2.4.jar:/root/java/test/lib/commons-io-1.4.jar:/root/java/test/lib/slf4j-api-1.7.6.jar:/usr/java/jdk1.8.0_152/lib/tools.jar:/root/java/test/lib/logback-classic-1.1.2.jar:/root/java/test/lib/logback-core-1.1.2.jar
 
 服务器
-java  -XXaltjvm=dcevm -javaagent:/root/java/test/zaizai-agent.jar MainServer
+java  -XXaltjvm=dcevm -javaagent:/data/agent/zaizai-agent.jar MainServer
 
 更新
-java UpdateMainServer /root/java/test/zaizai-agent.jar 23717
+java UpdateMainServer /data/agent/zaizai-agent.jar 23717
+
+
+---------------------------------------------------------------------------------
+@2018-1-17
+export CLASSPATH=.:/root/java/test/lib/commons-lang-2.4.jar:/root/java/test/lib/commons-io-1.4.jar:/root/java/test/lib/slf4j-api-1.7.6.jar:/usr/java/jdk1.8.0_152/lib/tools.jar:/root/java/test/lib/logback-classic-1.1.2.jar:/root/java/test/lib/logback-core-1.1.2.jar:/data/agent/patches
+
+把/data/agent/patches 目录加到classpath里，hotswap+dcevm 就可以支持新增class了
+说明：static filed的修改，热更还是不能生效。不过针对static field的热更，可以通过调用方法来，修改它

@@ -64,6 +64,8 @@ public class ZaiZaiHotSwapAgent {
 //        inst.addTransformer(classTransformer, true);
         Class[] allLoadedClasses = inst.getAllLoadedClasses();
         List<Class> transformClasses = new ArrayList<>();
+
+        //替换原有class
         for (Class loadedClass : allLoadedClasses) {
             String loadedClassName = loadedClass.getName();
             //logger.info("[hot swap] loadedClassName:", loadedClassName);
@@ -71,6 +73,7 @@ public class ZaiZaiHotSwapAgent {
                 transformClasses.add(loadedClass);
             }
         }
+
         try {
             inst.addTransformer(classTransformer, true);
             inst.retransformClasses(transformClasses.toArray(new Class[]{}));
