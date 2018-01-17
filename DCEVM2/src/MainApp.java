@@ -37,7 +37,6 @@ public class MainApp
                             +"|64bit:"+ installation.is64Bit());
 
                 }
-
             }
             System.out.println("Usage: java -jar DCEVM-8u144-installer_new.jar install 0 altjvm true");
             System.out.println("Usage: java -jar DCEVM-8u144-installer_new.jar install 0 altjvm false");
@@ -48,10 +47,15 @@ public class MainApp
             showInstallerException(ex);
         }
 
+        if(installations.size() < 1) {
+            System.out.println("Cannot find jdk!!!!");
+        }
+
         if(args.length != 4){
             System.out.println("Installation false");
             return;
         }
+
         try
         {
             if("install".equals(args[0]) || "uninstall".equals(args[0])){
