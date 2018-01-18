@@ -89,3 +89,10 @@ java -jar dcevm-0.2-mac_new.jar
 java -jar dcevm-0.2-mac_new.jar install 0
 
 
+---------------------------------------------------------------------------------
+@2018-1-18 类冲突的问题
+因为patches目录需要加到server的classpath，这样就能热更新增的类
+但这样重启server的时候，会出现类冲突。
+所以重启服务器之前需要，删除patches目录
+
+
