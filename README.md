@@ -96,3 +96,11 @@ java -jar dcevm-0.2-mac_new.jar install 0
 所以重启服务器之前需要，删除patches目录
 
 
+---------------------------------------------------------------------------------
+@2018-1-19 DCEVM下jvm参数调优的问题
+一、不支持参数 -server, 加了这个参数 服务器启动不会有任何错误消息，但会导致热更时新增方法不能生效
+二、GC仅支持参数 -XX:+UseSerialGC， UseGC 只能使用一种 -XX:+UseSerialGC 不能使用 -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+UseG1GC
+使用其他GC参数会报如下错误
+Must use the serial GC in the DCEVM
+Error: Could not create the Java Virtual Machine.
+Error: A fatal exception has occurred. Program will exit.
